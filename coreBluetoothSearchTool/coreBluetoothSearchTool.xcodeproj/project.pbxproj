@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B59DB941CFA9569008C336F /* LLActivityAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59DB931CFA9569008C336F /* LLActivityAlertView.m */; };
 		8BCBC2D51CF9CB11001F1AF1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCBC2D41CF9CB11001F1AF1 /* main.m */; };
 		8BCBC2D81CF9CB11001F1AF1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCBC2D71CF9CB11001F1AF1 /* AppDelegate.m */; };
 		8BCBC2DB1CF9CB11001F1AF1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCBC2DA1CF9CB11001F1AF1 /* ViewController.m */; };
@@ -35,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8B59DB921CFA9569008C336F /* LLActivityAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLActivityAlertView.h; sourceTree = "<group>"; };
+		8B59DB931CFA9569008C336F /* LLActivityAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLActivityAlertView.m; sourceTree = "<group>"; };
 		8BCBC2D01CF9CB11001F1AF1 /* coreBluetoothSearchTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = coreBluetoothSearchTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BCBC2D41CF9CB11001F1AF1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8BCBC2D61CF9CB11001F1AF1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -78,6 +81,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8B59DB911CFA9537008C336F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8B59DB921CFA9569008C336F /* LLActivityAlertView.h */,
+				8B59DB931CFA9569008C336F /* LLActivityAlertView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		8BCBC2C71CF9CB11001F1AF1 = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +113,7 @@
 		8BCBC2D21CF9CB11001F1AF1 /* coreBluetoothSearchTool */ = {
 			isa = PBXGroup;
 			children = (
+				8B59DB911CFA9537008C336F /* View */,
 				8BCBC2D61CF9CB11001F1AF1 /* AppDelegate.h */,
 				8BCBC2D71CF9CB11001F1AF1 /* AppDelegate.m */,
 				8BCBC2D91CF9CB11001F1AF1 /* ViewController.h */,
@@ -270,6 +283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B59DB941CFA9569008C336F /* LLActivityAlertView.m in Sources */,
 				8BCBC2DB1CF9CB11001F1AF1 /* ViewController.m in Sources */,
 				8BCBC2D81CF9CB11001F1AF1 /* AppDelegate.m in Sources */,
 				8BCBC2D51CF9CB11001F1AF1 /* main.m in Sources */,
@@ -498,6 +512,7 @@
 				8BCBC2FF1CF9CB11001F1AF1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8BCBC3001CF9CB11001F1AF1 /* Build configuration list for PBXNativeTarget "coreBluetoothSearchToolTests" */ = {
 			isa = XCConfigurationList;
@@ -506,6 +521,7 @@
 				8BCBC3021CF9CB11001F1AF1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8BCBC3031CF9CB11001F1AF1 /* Build configuration list for PBXNativeTarget "coreBluetoothSearchToolUITests" */ = {
 			isa = XCConfigurationList;
@@ -514,6 +530,7 @@
 				8BCBC3051CF9CB11001F1AF1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
