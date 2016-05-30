@@ -28,42 +28,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"%s",__FUNCTION__);
+
+}
+
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
     self.peripherals = [NSMutableArray array];
     
     // 创建中心设备管理者,并且设置代理
     //    _mgr = [[CBCentralManager alloc] initWithDelegate:self queue:nil options:nil];//这个初始化方法,不会提示出现"打开蓝牙允许'xxxx'连接都配件"的系统提示
     _mgr = [[CBCentralManager alloc] initWithDelegate:self queue:nil];//出现提示框
     
-    
     //选择器
     LLActivityAlertView *alert = [[LLActivityAlertView alloc] init];
     alert.delegate = self;
     _myActivityAlertView = alert;
-    [_myActivityAlertView addWantShowName:@"beginSearchDevice" showTypeID:1];
-    
-    
-//    NSLog(@"%@",[UIApplication sharedApplication].keyWindow);
-//    NSLog(@"%@",[UIApplication sharedApplication].windows);
-    NSLog(@"========");
-}
 
-
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    NSLog(@"%@",[UIApplication sharedApplication].keyWindow);
-    NSLog(@"%@",[UIApplication sharedApplication].windows);
-}
-
-#pragma mark - 懒加载代码
-- (CBCentralManager *)mgr
-{
-    if (_mgr == nil) {
-        // 创建中心设备管理者,并且设置代理
-        _mgr = [[CBCentralManager alloc] initWithDelegate:self queue:nil options:nil];
-//        _mgr = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
-    }
-    return _mgr;
+    NSLog(@"================================================================");
 }
 
 -(void)centralManagerDidUpdateState:(CBCentralManager *)central{
@@ -100,11 +83,12 @@
     
 }
 
+
+
 #define LLUserDefaultSetBindedPeripheralIndetify(object,key) [[NSUserDefaults standardUserDefaults] setObject:object forKey:key]
 #define LLUserDefaultGetBindedPeripheralIndetify(key) [[NSUserDefaults standardUserDefaults] objectForKey:key]
 static NSString *bindingFlag = @"myRFTest002";
 static NSString *flag = @"2EE309FD-1492-A024-425A-ACDC05D8EB09";
-
 #pragma mark - CBCentralManager的代理方法
 /**
  *  当扫描到外围设备时,会执行该方法
@@ -116,46 +100,46 @@ static NSString *flag = @"2EE309FD-1492-A024-425A-ACDC05D8EB09";
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
     NSLog(@"%s  CBPeripheral:%@ ",__FUNCTION__,peripheral);
+    [_myActivityAlertView addWantShowName:peripheral.name];
+    
     // 将发现的外围设备添加到数组中
     if (![self.peripherals containsObject:peripheral]) {
         [self.peripherals addObject:peripheral];
     }
     
     
-    NSString *perIdentify = [NSString stringWithFormat:@"%@",[peripheral.identifier UUIDString]];
-    if (!isConnected && [LLUserDefaultGetBindedPeripheralIndetify(bindingFlag) isEqualToString:flag]) {
-        isConnected = YES;
-        NSLog(@"second connect periperal is %@",LLUserDefaultGetBindedPeripheralIndetify(bindingFlag));
-        NSUUID *connentIdentify = [[NSUUID alloc] initWithUUIDString:LLUserDefaultGetBindedPeripheralIndetify(bindingFlag)];
-        
-        NSArray *resultArray = [NSArray arrayWithArray:[self.mgr retrievePeripheralsWithIdentifiers:@[connentIdentify]]];
-        NSLog(@"resultArray=%@",resultArray);
-        
-        if (resultArray.count) {
-            
-            CBPeripheral *kownPeripheral = (CBPeripheral *)resultArray[0];
-            if([[kownPeripheral.identifier UUIDString] isEqualToString:flag]){
-                
-                [self ll_connectedPeriperal:kownPeripheral];
-            }
-            
-            
-        }else{
-            NSLog(@"----------------------- 重新连接设备 -----------------------");
-        }
-        
-        
-    }
-    
-    
-    if (LLUserDefaultGetBindedPeripheralIndetify(bindingFlag) == nil && [perIdentify isEqualToString:flag]) {
-        
-        LLUserDefaultSetBindedPeripheralIndetify(perIdentify, bindingFlag);
-        [self ll_connectedPeriperal:peripheral];
-        
-    }else if(LLUserDefaultGetBindedPeripheralIndetify(bindingFlag) && [perIdentify isEqualToString:flag]){
-        
-    }
+//    NSString *perIdentify = [NSString stringWithFormat:@"%@",[peripheral.identifier UUIDString]];
+//    if (!isConnected && [LLUserDefaultGetBindedPeripheralIndetify(bindingFlag) isEqualToString:flag]) {
+//        isConnected = YES;
+//        NSLog(@"second connect periperal is %@",LLUserDefaultGetBindedPeripheralIndetify(bindingFlag));
+//        NSUUID *connentIdentify = [[NSUUID alloc] initWithUUIDString:LLUserDefaultGetBindedPeripheralIndetify(bindingFlag)];
+//        
+//        NSArray *resultArray = [NSArray arrayWithArray:[self.mgr retrievePeripheralsWithIdentifiers:@[connentIdentify]]];
+//        NSLog(@"resultArray=%@",resultArray);
+//        
+//        if (resultArray.count) {
+//            
+//            CBPeripheral *kownPeripheral = (CBPeripheral *)resultArray[0];
+//            if([[kownPeripheral.identifier UUIDString] isEqualToString:flag]){
+//                
+//                [self ll_connectedPeriperal:kownPeripheral];
+//            }
+//            
+//        }else{
+//            NSLog(@"----------------------- 重新连接设备 -----------------------");
+//        }
+//        
+//    }
+//    
+//    
+//    if (LLUserDefaultGetBindedPeripheralIndetify(bindingFlag) == nil && [perIdentify isEqualToString:flag]) {
+//        
+//        LLUserDefaultSetBindedPeripheralIndetify(perIdentify, bindingFlag);
+//        [self ll_connectedPeriperal:peripheral];
+//        
+//    }else if(LLUserDefaultGetBindedPeripheralIndetify(bindingFlag) && [perIdentify isEqualToString:flag]){
+//        
+//    }
 }
 
 //centralManager:didConnectPeripheral:
@@ -164,11 +148,24 @@ static NSString *flag = @"2EE309FD-1492-A024-425A-ACDC05D8EB09";
     [self.mgr stopScan];
 }
 
+
 //--- 连接/重新连接设备
 -(void)ll_connectedPeriperal:(CBPeripheral *)peripheral{
     self.mgr.delegate = self;
     [self.mgr connectPeripheral:peripheral options:nil];
     
+}
+
+
+
+- (CBCentralManager *)mgr
+{
+    if (_mgr == nil) {
+        // 创建中心设备管理者,并且设置代理
+        _mgr = [[CBCentralManager alloc] initWithDelegate:self queue:nil options:nil];
+        //        _mgr = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+    }
+    return _mgr;
 }
 
 

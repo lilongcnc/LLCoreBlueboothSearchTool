@@ -26,7 +26,7 @@
  *  - 1: 开始寻找设备
  *  - 2: 找到了设备
  */
-- (void)addWantShowName:(NSString *)name showTypeID:(int)typeID;
+- (void)addWantShowName:(NSString *)name;
 
 //- (void)show;
 /**
