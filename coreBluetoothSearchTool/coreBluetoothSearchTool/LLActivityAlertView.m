@@ -165,33 +165,31 @@
     }
     
     
-    if (count > 1) {
         
-        [UIView animateWithDuration:0.3 animations:^{
+    [UIView animateWithDuration:0.3 animations:^{
+        
+        if (!doOnce) {
+            doOnce = YES;
+            _myTitleLabel.frame = CGRectMake(0, 0, menuViewW, titleLabelH);
+            _myTitleLabel.text = @"请选择您需要连接的设备";
             
-            if (!doOnce) {
-                doOnce = YES;
-                _myTitleLabel.frame = CGRectMake(0, 0, menuViewW, titleLabelH);
-                _myTitleLabel.text = @"请选择您需要连接的设备";
-                
-                _myTopLineView.frame = CGRectMake(0, CGRectGetMaxY(_myTitleLabel.frame), menuViewW, lineViewH);
-            }
+            _myTopLineView.frame = CGRectMake(0, CGRectGetMaxY(_myTitleLabel.frame), menuViewW, lineViewH);
+        }
+        
+        
+        if (count*menuListBtnH <= menuListBtnH*20) {//446
+            _mySelectItemBgView.y = [self getmySelectItemBgViewY];
+            _mySelectItemBgView.height = titleLabelH + (count+1)*menuListBtnH;//加上取消按钮的
+            _mySelectItemScrollView.y = CGRectGetMaxY(_myTopLineView.frame);
+            _mySelectItemScrollView.height = count*menuListBtnH;
+            _myCannelBtn.y = _mySelectItemBgView.height - menuListBtnH;
             
-            
-            if (count*menuListBtnH <= menuListBtnH*20) {//446
-                _mySelectItemBgView.y = [self getmySelectItemBgViewY];
-                _mySelectItemBgView.height = titleLabelH + (count+1)*menuListBtnH;//加上取消按钮的
-                _mySelectItemScrollView.y = CGRectGetMaxY(_myTopLineView.frame);
-                _mySelectItemScrollView.height = count*menuListBtnH;
-                _myCannelBtn.y = _mySelectItemBgView.height - menuListBtnH;
-                
-            }
-            _mySelectItemScrollView.contentSize = CGSizeMake(_mySelectItemBgView.width, count*menuListBtnH);
+        }
+        _mySelectItemScrollView.contentSize = CGSizeMake(_mySelectItemBgView.width, count*menuListBtnH);
 
-        }];
-    }
+    }];
     
-    NSLog(@"_mySelectItemBgView.height:%f",_mySelectItemBgView.height);
+//    NSLog(@"_mySelectItemBgView.height:%f",_mySelectItemBgView.height);
 }
 
 
@@ -211,7 +209,7 @@
 }
 
 - (void)listBtnOnclicck:(UIButton *)sender{
-    NSLog(@"选中了 第 %tu 个按钮",sender.tag);
+//    NSLog(@"选中了 第 %tu 个按钮",sender.tag);
     if ([self.delegate respondsToSelector:@selector(activityAlertView:clickedButtonAtIndex:)]) {
         [self.delegate activityAlertView:self clickedButtonAtIndex:sender.tag];
     }

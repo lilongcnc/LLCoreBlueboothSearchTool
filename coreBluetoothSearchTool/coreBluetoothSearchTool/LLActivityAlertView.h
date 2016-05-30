@@ -28,6 +28,9 @@
  */
 - (void)addWantShowName:(NSString *)name;
 
+-(void)close;
+
+
 //- (void)show;
 /**
  * 获取点击行TAG的的代理回调方式
