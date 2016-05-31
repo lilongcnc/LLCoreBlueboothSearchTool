@@ -65,6 +65,7 @@
         cover.frame = [UIScreen mainScreen].bounds;
         cover.backgroundColor = [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:0.3];
         cover.backgroundColor = [UIColor orangeColor];
+        cover.alpha = 0.3;
         //    [cover addTarget:self action:@selector(coverBtnOnClick:) forControlEvents:UIControlEventTouchUpInside];
         cover;
     });
@@ -131,7 +132,7 @@
     });
     
     
-    [_myBackgroundCoverBtn addSubview:_mySelectItemBgView];
+    [LLKeyWindow addSubview:_mySelectItemBgView];
     [LLKeyWindow addSubview:_myBackgroundCoverBtn];
     
 }

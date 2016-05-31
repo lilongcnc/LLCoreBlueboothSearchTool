@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		897509171CFD58F0000DD175 /* LLBlueToothTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 897509161CFD58F0000DD175 /* LLBlueToothTool.m */; };
 		89DF9AC11CFC1FFB007BEDDB /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 89DF9AC01CFC1FFB007BEDDB /* UIView+Frame.m */; };
 		8B59DB941CFA9569008C336F /* LLActivityAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B59DB931CFA9569008C336F /* LLActivityAlertView.m */; };
 		8BCBC2D51CF9CB11001F1AF1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BCBC2D41CF9CB11001F1AF1 /* main.m */; };
@@ -37,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		897509151CFD58F0000DD175 /* LLBlueToothTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLBlueToothTool.h; sourceTree = "<group>"; };
+		897509161CFD58F0000DD175 /* LLBlueToothTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLBlueToothTool.m; sourceTree = "<group>"; };
 		89DF9ABF1CFC1FFB007BEDDB /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
 		89DF9AC01CFC1FFB007BEDDB /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		8B59DB921CFA9569008C336F /* LLActivityAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLActivityAlertView.h; sourceTree = "<group>"; };
@@ -84,13 +87,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8B59DB911CFA9537008C336F /* View */ = {
+		897509141CFD58B8000DD175 /* BlueToothTools */ = {
 			isa = PBXGroup;
 			children = (
 				8B59DB921CFA9569008C336F /* LLActivityAlertView.h */,
 				8B59DB931CFA9569008C336F /* LLActivityAlertView.m */,
+				897509151CFD58F0000DD175 /* LLBlueToothTool.h */,
+				897509161CFD58F0000DD175 /* LLBlueToothTool.m */,
 			);
-			name = View;
+			name = BlueToothTools;
+			sourceTree = "<group>";
+		};
+		897509181CFD76D3000DD175 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				89DF9ABF1CFC1FFB007BEDDB /* UIView+Frame.h */,
+				89DF9AC01CFC1FFB007BEDDB /* UIView+Frame.m */,
+			);
+			name = Category;
+			sourceTree = "<group>";
+		};
+		897509191CFD76E2000DD175 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				8BCBC2DC1CF9CB11001F1AF1 /* Main.storyboard */,
+				8BCBC2DF1CF9CB11001F1AF1 /* Assets.xcassets */,
+				8BCBC2E11CF9CB11001F1AF1 /* LaunchScreen.storyboard */,
+				8BCBC2E41CF9CB11001F1AF1 /* Info.plist */,
+				8BCBC2D61CF9CB11001F1AF1 /* AppDelegate.h */,
+				8BCBC2D71CF9CB11001F1AF1 /* AppDelegate.m */,
+			);
+			name = Others;
 			sourceTree = "<group>";
 		};
 		8BCBC2C71CF9CB11001F1AF1 = {
@@ -116,17 +143,11 @@
 		8BCBC2D21CF9CB11001F1AF1 /* coreBluetoothSearchTool */ = {
 			isa = PBXGroup;
 			children = (
-				89DF9ABF1CFC1FFB007BEDDB /* UIView+Frame.h */,
-				89DF9AC01CFC1FFB007BEDDB /* UIView+Frame.m */,
-				8B59DB911CFA9537008C336F /* View */,
-				8BCBC2D61CF9CB11001F1AF1 /* AppDelegate.h */,
-				8BCBC2D71CF9CB11001F1AF1 /* AppDelegate.m */,
+				897509191CFD76E2000DD175 /* Others */,
+				897509181CFD76D3000DD175 /* Category */,
+				897509141CFD58B8000DD175 /* BlueToothTools */,
 				8BCBC2D91CF9CB11001F1AF1 /* ViewController.h */,
 				8BCBC2DA1CF9CB11001F1AF1 /* ViewController.m */,
-				8BCBC2DC1CF9CB11001F1AF1 /* Main.storyboard */,
-				8BCBC2DF1CF9CB11001F1AF1 /* Assets.xcassets */,
-				8BCBC2E11CF9CB11001F1AF1 /* LaunchScreen.storyboard */,
-				8BCBC2E41CF9CB11001F1AF1 /* Info.plist */,
 				8BCBC2D31CF9CB11001F1AF1 /* Supporting Files */,
 			);
 			path = coreBluetoothSearchTool;
@@ -288,6 +309,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				897509171CFD58F0000DD175 /* LLBlueToothTool.m in Sources */,
 				8B59DB941CFA9569008C336F /* LLActivityAlertView.m in Sources */,
 				8BCBC2DB1CF9CB11001F1AF1 /* ViewController.m in Sources */,
 				8BCBC2D81CF9CB11001F1AF1 /* AppDelegate.m in Sources */,
