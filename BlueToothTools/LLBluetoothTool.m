@@ -6,7 +6,7 @@
 //  Copyright © 2016年 lauren. All rights reserved.
 //
 
-#import "LLBlueToothTool.h"
+#import "LLBluetoothTool.h"
 #import "LLActivityAlertView.h"
 
 
@@ -24,7 +24,7 @@ static NSString * const STCentralErrorConnectAutoConnectFail = @"auto connect fa
 //是否开启自动重连
 static BOOL const isOpenAutoConnect = YES;
 
-@interface LLBlueToothTool () <CBCentralManagerDelegate, CBPeripheralDelegate,LLActivityAlertViewDelegate>
+@interface LLBluetoothTool () <CBCentralManagerDelegate, CBPeripheralDelegate,LLActivityAlertViewDelegate>
 
 @property (nonatomic, strong) CBCentralManager *myCentralManager;
 @property (strong, nonatomic) CBPeripheral *myConnectedPeripheral; ///< 上一次连接上的 Peripheral，用来做自动连接时，保存强引用
@@ -41,15 +41,15 @@ static BOOL const isOpenAutoConnect = YES;
 @end
 
 
-@implementation LLBlueToothTool
+@implementation LLBluetoothTool
 
 static  NSString * const bindingFlag = @"bindingBlueToothFlag";
 
 + (instancetype)shareInstence{
-    static LLBlueToothTool *tool = nil;
+    static LLBluetoothTool *tool = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        tool = [LLBlueToothTool new];
+        tool = [LLBluetoothTool new];
     });
     return tool;
 }
@@ -327,11 +327,11 @@ static  NSString * const bindingFlag = @"bindingBlueToothFlag";
     }
 }
 
-//返回搜索到的蓝牙设备数组
-- (void)returnSelectPeripheralIndexInfo:(NSInteger)index{
-//    if (self.delegate && [self.delegate respondsToSelector:@selector(ll_bluetooth:didSelectPeripheralInLLActivityAlertView:)]) {
-//        [self.delegate ll_bluetooth:self didSelectPeripheralInLLActivityAlertView:index];
-//    }
+//返回搜索到的蓝牙设备
+- (void)returnSelectPeripheralIndexInfo:(NSInteger)index withPeripheral:(CBPeripheral *)peripheral{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ll_bluetooth:didSelectPeripheralInLLActivityAlertView:withPeripheral:)]) {
+        [self.delegate ll_bluetooth:self didSelectPeripheralInLLActivityAlertView:index withPeripheral:peripheral];
+    }
 }
 
 //设备连接成功

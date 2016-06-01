@@ -9,18 +9,18 @@
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 
-@class LLBlueToothTool;
+@class LLBluetoothTool;
 
-@protocol LLBlueToothToolDelegate <NSObject>
+@protocol LLBluetoothToolDelegate <NSObject>
 
 @optional
 /**
- *  如果isUseLLActivityAlertView设置为YES,则实现此代理方法,获取选择在LLActivityAlertView上选择设备的序号
+ *  如果isUseLLActivityAlertView设置为YES,则实现此代理方法,获取选择在LLActivityAlertView上选择设备的序号和设备
  *
  *  @param llBluetoothTool 本类
  *  @param index           选择设备所在的序号
  */
-//- (void)ll_bluetooth:(LLBlueToothTool *)llBluetoothTool didSelectPeripheralInLLActivityAlertView:(NSInteger )index;
+- (void)ll_bluetooth:(LLBluetoothTool *)llBluetoothTool didSelectPeripheralInLLActivityAlertView:(NSInteger )index withPeripheral:(CBPeripheral *)peripheral;
 
 /**
  *  如果没有设置isUseLLActivityAlertView,则实现此代理方法,返回规定时间内找到的全部 Peripheral 的数组
@@ -28,7 +28,7 @@
  *  @param llBluetoothTool 本类
  *  @param peripheralArray 规定时间内搜索到的全部的蓝牙设备
  */
-- (void)ll_bluetooth:(LLBlueToothTool *)llBluetoothTool findPeripherals:(NSArray *)peripheralArray;
+- (void)ll_bluetooth:(LLBluetoothTool *)llBluetoothTool findPeripherals:(NSArray *)peripheralArray;
 
 /**
  *  链接蓝牙过程中的的错误回调
@@ -36,7 +36,7 @@
  *  @param llBluetoothTool 本类
  *  @param error           错误信息
  */
-- (void)ll_bluetooth:(LLBlueToothTool *)llBluetoothTool connectFailure:(NSError *)error;
+- (void)ll_bluetooth:(LLBluetoothTool *)llBluetoothTool connectFailure:(NSError *)error;
 
 /**
  * 仅仅是 Peripheral 连接成功，如果内部的 Service 或者 Characteristic 连接失败，会走失败代理
@@ -44,7 +44,7 @@
  *  @param llBluetoothTool 本类
  *  @param peripheral      连接上的设备
  */
-- (void)ll_bluetooth:(LLBlueToothTool *)llBluetoothTool connectSuccess:(CBPeripheral *)peripheral;
+- (void)ll_bluetooth:(LLBluetoothTool *)llBluetoothTool connectSuccess:(CBPeripheral *)peripheral;
 
 /**
  *  断开连接（准备断开就会走这个方法，具体是否真正断开要看苹果底层的实现，如果有其他 app 正连接着，不会断开）
@@ -59,7 +59,7 @@
 
 
 
-@interface LLBlueToothTool : NSObject
+@interface LLBluetoothTool : NSObject
 
 /**
  *  是否使用自带的设备选择视图
@@ -69,7 +69,7 @@
 /**
  *  代理方法
  */
-@property (nonatomic,assign) id<LLBlueToothToolDelegate> delegate;
+@property (nonatomic,assign) id<LLBluetoothToolDelegate> delegate;
 
 /**
  *  指定搜索设备的时间,double类型
